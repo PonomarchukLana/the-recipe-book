@@ -9,14 +9,14 @@ export class RecipeService {
     category?: string;
   }) {
     try {
-      let url = `${process.env.apiUrl}/search.php?s=`;
+      let url = `${process.env.API_URL}/search.php?s=`;
 
       if (filteredBy.ingredient) {
-        url = `${process.env.apiUrl}/filter.php?i=${filteredBy.ingredient}`;
+        url = `${process.env.API_URL}/filter.php?i=${filteredBy.ingredient}`;
       } else if (filteredBy.country) {
-        url = `${process.env.apiUrl}/filter.php?a=${filteredBy.country}`;
+        url = `${process.env.API_URL}/filter.php?a=${filteredBy.country}`;
       } else if (filteredBy.category) {
-        url = `${process.env.apiUrl}/filter.php?c=${filteredBy.category}`;
+        url = `${process.env.API_URL}/filter.php?c=${filteredBy.category}`;
       }
 
       const { data } = await axios.get(url);
@@ -28,7 +28,7 @@ export class RecipeService {
 
   async getRecipe(id: string) {
     try {
-      const url = `${process.env.apiUrl}/lookup.php?i=${id}`;
+      const url = `${process.env.API_URL}/lookup.php?i=${id}`;
       const { data } = await axios.get(url);
       return data;
     } catch (error) {
